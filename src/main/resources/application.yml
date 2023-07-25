@@ -1,0 +1,20 @@
+server:
+  port: 8872
+spring:
+  application:
+    name: config-server
+---
+spring:
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ivanvizgalin/ms-config-properties
+          search-paths: "/{application}/{profile}"
+          default-label: main
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
